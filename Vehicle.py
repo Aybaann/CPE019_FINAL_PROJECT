@@ -85,8 +85,7 @@ if selected == "About Project":
             st.write(
                 """
                 <div style='text-align: justify;'>
-                    The dataset for this project came from this link: https://www.kaggle.com/datasets/kaggleashwin/vehicle-type-recognition.
-                    <br>
+                    The dataset for this project came from this link: https://www.kaggle.com/datasets/kaggleashwin/vehicle-type-recognition. <br>
                     It contains the following: <br>
                          - TRUCK  <br>
                          - BUS    <br>
