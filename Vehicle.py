@@ -14,6 +14,9 @@ def get(path:str):
 
 robot_path = get("./assets/chuchu.json")
 team_path = get("./assets/team.json")
+ano_path = get("./assets/Ano.json")
+to_path = get("./assets/to.json")
+
 
 
 # Sidebar
@@ -72,7 +75,7 @@ if selected == "About Project":
                 unsafe_allow_html=True
             )
         with right_column:
-            st_lottie(robot_path, height = 250, key = "hi")
+            st_lottie(Ano_path, height = 250, key = "hi")
 
 
 # Vehicle Classification
