@@ -46,7 +46,7 @@ if selected == "Home":
         f"""
         <style>
         .stApp {{
-            background-image: url({bg_image_home});
+            background-image: "./assets/jpeg.jpg";
             background-size: cover;
         }}
         </style>
