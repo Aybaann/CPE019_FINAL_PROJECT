@@ -135,8 +135,6 @@ if selected == "About Project":
 # Vehicle Classification
 if selected == "Vehicle Classification":
      st.title("Model Prediction")
-     st.write("Upload an image to predict the sports category.")
-
      test_image = st.file_uploader("Choose an Image:")
      if test_image is not None:
          st.image(test_image, width=300, caption='Uploaded Image')
