@@ -5,17 +5,35 @@ from streamlit_option_menu import option_menu
 import requests
 from streamlit_lottie import st_lottie
 from PIL import Image
-import tensorflow as tf
+from tensorflow.keras.models import load_model
 
-#LOAD MODEL 
-#Tensorflow Model Prediction
-def model_prediction(test_image):
-    model = tf.keras.models.load_model("vehicle.h5")
-    image = tf.keras.preprocessing.image.load_img(test_image,target_size=(64,64))
-    input_arr = tf.keras.preprocessing.image.img_to_array(image)
-    input_arr = np.array([input_arr]) #convert single image to batch
-    predictions = model.predict(input_arr)
-    return np.argmax(predictions) #return index of max element
+def load_image(image_file):
+    img = Image.open(image_file)
+    img = img.resize((32, 32))
+    img = np.array(img)
+    if img.shape[-1] == 4:  # Check if the image has an alpha channel
+        img = img[..., :3]  # Remove the alpha channel
+    img = img.reshape(1, 32, 32, 3)
+    img = img.astype('float32')
+    img /= 255.0
+    return img
+
+# Function to make predictions
+def predict(image, model, labels):
+    img = load_image(image)
+    result = model.predict(img)
+    predicted_class = np.argmax(result, axis=1)
+    return labels[predicted_class[0]]
+
+# Load the model
+model = load_model('vehicle.h5')  
+
+# Function to load labels from a text file
+def load_labels(filename):
+    with open(filename, 'r') as file:
+        labels = file.readlines()
+    labels = [label.strip() for label in labels]
+    return labels
 
 st.set_page_config(page_title="Vehicle Classification", page_icon=":bus:", layout="wide")
 
@@ -116,22 +134,17 @@ if selected == "About Project":
 
 # Vehicle Classification
 if selected == "Vehicle Classification":
-     st.header("Model Prediction")
-     test_image = st.file_uploader("Choose an Image:")
-     if(st.button("Show Image")):
-         st.image(test_image,width=4,use_column_width=True)
-     #Predict button
-     if(st.button("Predict")):
-         st.snow()
-         st.write("Our Prediction")
-         result_index = model_prediction(test_image)
-         #Reading Labels
-         with open("labels.txt") as f:
-             content = f.readlines()
-         label = []
-         for i in content:
-             label.append(i[:-1])
-         st.success("Model Prediction: {}".format(label[result_index]))
+     st.title("Model Prediction")
+        st.write("Upload an image to predict the sports category.")
+
+        test_image = st.file_uploader("Choose an Image:")
+        if test_image is not None:
+            st.image(test_image, width=300, caption='Uploaded Image')
+            if st.button("Predict"):
+                st.write("Predicting...")
+                labels = load_labels("labels.txt")
+                predicted_sport = predict(test_image, model, labels)
+                st.success(f"Predicted Sports Category: {predicted_sport}")
 
 
 # Team Page
