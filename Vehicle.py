@@ -59,7 +59,7 @@ if selected == "Home":
         st.write("---")
         left_column, right_column = st.columns(2)
         with left_column:
-             st_lottie(car_path, height = 250, key = "hi")
+             st_lottie(car_path, height = 300, key = "hi")
              st_lottie(bus_path, height = 300, key = "hii")
         with right_column:
             st_lottie(truck_path, height = 300, key = "hiii")
