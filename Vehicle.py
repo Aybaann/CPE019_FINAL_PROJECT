@@ -1,35 +1,26 @@
-import streamlit as st
+﻿import streamlit as st
 import numpy as np
 import json
 from streamlit_option_menu import option_menu
+import requests
 from streamlit_lottie import st_lottie
 from PIL import Image
 import tensorflow as tf
 
-# Function to load and preprocess image for model prediction
-def preprocess_image(image_path, target_size=(64, 64)):
-    image = Image.open(image_path)
-    image = image.resize(target_size)
-    image = np.array(image) / 255.0  # Normalize pixel values to [0, 1]
-    image = np.expand_dims(image, axis=0)  # Add batch dimension
-    return image
-
-# Function for model prediction
-def model_prediction(image):
-    try:
-        model = tf.keras.models.load_model("vehicle.h5")
-        model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])  #
-        predictions = model.predict(image)
-        result_index = np.argmax(predictions)
-        return result_index
-    except Exception as e:
-        print("Error:", e)
-        return None
+#LOAD MODEL 
+#Tensorflow Model Prediction
+def model_prediction(test_image):
+    model = tf.keras.models.load_model("vehicle.h5")
+    image = tf.keras.preprocessing.image.load_img(test_image,target_size=(64,64))
+    input_arr = tf.keras.preprocessing.image.img_to_array(image)
+    input_arr = np.array([input_arr]) #convert single image to batch
+    predictions = model.predict(input_arr)
+    return np.argmax(predictions) #return index of max element
 
 st.set_page_config(page_title="Vehicle Classification", page_icon=":bus:", layout="wide")
 
-def get(path: str):
-    with open(path, "r") as p:
+def get(path:str):
+    with open(path,"r") as p:
         return json.load(p)
 
 car_path = get("./assets/car.json")
@@ -45,14 +36,14 @@ bg_image_path = "./assets/jpeg.jpg"
 # Sidebar
 with st.sidebar:
     selected = option_menu(
-         menu_title="Main Menu",
-        options=["Home", "About Project", "Vehicle Classification", "Team"],
-        icons=["house", "book", "pin", "people"],
-        menu_icon="cast",
-        default_index=0,
+         menu_title = "Main Menu",
+        options = ["Home", "About Project", "Vehicle Classification", "Team"],
+        icons = ["house", "book", "pin","people"],
+        menu_icon ="cast",
+        default_index = 0,
     )
 
-# Background Images
+#Background Images
 st.markdown(
     f"""
     <style>
@@ -72,11 +63,11 @@ if selected == "Home":
         st.write("---")
         left_column, right_column = st.columns(2)
         with left_column:
-             st_lottie(car_path, height=300, key="hi")
-             st_lottie(bus_path, height=300, key="hii")
+             st_lottie(car_path, height = 300, key = "hi")
+             st_lottie(bus_path, height = 300, key = "hii")
         with right_column:
-            st_lottie(truck_path, height=300, key="hiii")
-            st_lottie(motor_path, height=300, key="hiiii")
+            st_lottie(truck_path, height = 300, key = "hiii")
+            st_lottie(motor_path, height = 300, key = "hiiii")
 
 # ABOUT PROJECT
 if selected == "About Project":
@@ -99,7 +90,7 @@ if selected == "About Project":
                 unsafe_allow_html=True
             )
         with right_column:
-            st_lottie(ano_path, height=250, key="hi")
+            st_lottie(ano_path, height = 250, key = "hi")
 
     with st.container():
         st.write("---")
@@ -118,26 +109,30 @@ if selected == "About Project":
                 </div>
                 """,
                 unsafe_allow_html=True
-            )
+           )
         with left_column:
                 st_lottie(to_path, height=250, key="h1")
 
 
 # Vehicle Classification
 if selected == "Vehicle Classification":
-    st.header("Vehicle Classification")
-    uploaded_image = st.file_uploader("Upload an image of a vehicle", type=["jpg", "jpeg", "png"])
-    
-    if uploaded_image is not None:
-        image = preprocess_image(uploaded_image)
-        
-        if st.button("Predict"):
-            result_index = model_prediction(image)
-            labels = ["TRUCK", "BUS", "CAR", "MOTORCYCLE"]
-            if result_index is not None and 0 <= result_index < len(labels):
-                st.success(f"Predicted Vehicle Type: {labels[result_index]}")
-            else:
-                st.error("Error: Unable to predict vehicle type.")
+     st.header("Model Prediction")
+     test_image = st.file_uploader("Choose an Image:")
+     if(st.button("Show Image")):
+         st.image(test_image,width=4,use_column_width=True)
+     #Predict button
+     if(st.button("Predict")):
+         st.snow()
+         st.write("Our Prediction")
+         result_index = model_prediction(test_image)
+         #Reading Labels
+         with open("labels.txt") as f:
+             content = f.readlines()
+         label = []
+         for i in content:
+             label.append(i[:-1])
+         st.success("Model Prediction: {}".format(label[result_index]))
+
 
 # Team Page
 if selected == "Team":
@@ -158,4 +153,4 @@ if selected == "Team":
                 unsafe_allow_html=True
         )
         with right_column:
-            st_lottie(team_path, height=150, key="hii")
+            st_lottie(team_path, height = 150, key = "hii")
