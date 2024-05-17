@@ -4,10 +4,11 @@ import json
 from streamlit_option_menu import option_menu
 import requests
 from streamlit_lottie import st_lottie
-#from keras.models import load_model
+from PIL import Image
+from keras.models import load_model
 
 #LOAD MODEL 
-#model = load_model('')
+model = load_model('vehicle.h5')
 
 #Background Images path 
 bg_image_home = "./assets/jpeg.jpg"
@@ -134,7 +135,7 @@ if selected == "Vehicle Classification":
                 else:
                     st.warning("Unknown Vehicle")
             except Exception as e:
-                st.warning("Error processing image. Please upload a valid image.")
+                st.warning("Error: The image was not recognized as a vehicle.")
 
 
 # Team Page
