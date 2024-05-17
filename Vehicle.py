@@ -42,7 +42,7 @@ with st.sidebar:
 
 # Home Page
 if selected == "Home":
-    st.bg(
+    st.markdown(
         f"""
         <style> 
             st.App{{
