@@ -43,16 +43,16 @@ with st.sidebar:
 # Home Page
 if selected == "Home":
     st.markdown(
-        f"""
-        <style> 
-            st.App{{
-                background: url({bg_image_home});
-                background-size: cover;
-            }}
-            </style>
-        """.
-         unsafe_allow_html=True
-    )
+    f"""
+    <style>
+    .stApp {{
+        background-image: url({bg_image_home});
+        background-size: cover;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
     
