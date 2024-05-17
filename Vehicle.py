@@ -4,10 +4,10 @@ import json
 from streamlit_option_menu import option_menu
 import requests
 from streamlit_lottie import st_lottie
-from keras.models import load_model
+#from keras.models import load_model
 
 #LOAD MODEL 
-model = load_model('')
+#model = load_model('')
 
 #Background Images path 
 bg_image_home = get("./assets/jpeg.jpg")
