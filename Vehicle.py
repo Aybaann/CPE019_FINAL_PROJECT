@@ -134,7 +134,10 @@ if selected == "Vehicle Classification":
         if st.button("Predict"):
             result_index = model_prediction(image)
             labels = ["TRUCK", "BUS", "CAR", "MOTORCYCLE"]
-            st.success(f"Predicted Vehicle Type: {labels[result_index]}")
+            if result_index is not None and 0 <= result_index < len(labels):
+                st.success(f"Predicted Vehicle Type: {labels[result_index]}")
+            else:
+                st.error("Error: Unable to predict vehicle type.")
 
 # Team Page
 if selected == "Team":
