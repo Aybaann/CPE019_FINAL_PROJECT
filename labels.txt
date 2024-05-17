@@ -1,0 +1,4 @@
+Truck
+Bus
+Motorcycle
+Car
