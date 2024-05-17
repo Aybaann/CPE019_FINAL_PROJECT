@@ -137,14 +137,14 @@ if selected == "Vehicle Classification":
      st.title("Model Prediction")
      st.write("Upload an image to predict the sports category.")
 
-    test_image = st.file_uploader("Choose an Image:")
-    if test_image is not None:
-        st.image(test_image, width=300, caption='Uploaded Image')
-        if st.button("Predict"):
-            st.write("Predicting...")
-            labels = load_labels("labels.txt")
-            predicted_sport = predict(test_image, model, labels)
-            st.success(f"Predicted Sports Category: {predicted_sport}")
+     test_image = st.file_uploader("Choose an Image:")
+     if test_image is not None:
+         st.image(test_image, width=300, caption='Uploaded Image')
+         if st.button("Predict"):
+             st.write("Predicting...")
+             labels = load_labels("labels.txt")
+             predicted_sport = predict(test_image, model, labels)
+             st.success(f"Predicted Sports Category: {predicted_sport}")
 
 # Team Page
 if selected == "Team":
