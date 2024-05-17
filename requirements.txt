@@ -5,4 +5,4 @@ numpy
 Pillow
 opencv-python-headless
 keras==2.6.0
-tensorflow==2.7.0
+tensorflow>=2.7.0,<2.8.0
