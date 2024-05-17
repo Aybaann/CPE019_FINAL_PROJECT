@@ -119,24 +119,24 @@ if selected == "Vehicle Classification":
     st.header("Vehicle Classification")
     
     with st.container():
-    test_image = st.file_uploader("Choose an Image:")
-    if st.button("Show Image"):
-        st.image(test_image, width=400, use_column_width=True)
+        test_image = st.file_uploader("Choose an Image:")
+        if st.button("Show Image"):
+            st.image(test_image, width=400, use_column_width=True)
     
-    # Predict button
-    if st.button("Predict"):
-        st.write("Our Prediction")
-        result_index = model_prediction(test_image)
+            # Predict button
+        if st.button("Predict"):
+            st.write("Our Prediction")
+            result_index = model_prediction(test_image)
         
-        # Reading Labels
-        with open("labels.txt") as f:
-            content = f.readlines()
+            # Reading Labels
+            with open("labels.txt") as f:
+                content = f.readlines()
         
-        label = []
-        for i in content:
-            label.append(i[:-1])
+            label = []
+            for i in content:
+                label.append(i[:-1])
         
-        st.success("Model Prediction: {}".format(label[result_index]))
+            st.success("Model Prediction: {}".format(label[result_index]))
 
 # Team Page
 if selected == "Team":
