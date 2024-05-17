@@ -33,12 +33,11 @@ with st.sidebar:
 # Home Page
 if selected == "Home":
     st.header("Hi, We are Group 2 :wave:")
-    st.write("")
-
+    st.write(" ")
+    st.write("<div style ='text-align: center; font-size: 50px;'> Welcome to Vehicle Classification :wave: </div>", unsafe_allow_html=True)
     with st.container():
         st.write("---")
         left_column, right_column = st.columns(2)
-        st.write("<div style ='text-align: center; font-size: 50px;'> Vehicle Classification </div>", unsafe_allow_html=True)
         with left_column:
             st.write(
                 """
