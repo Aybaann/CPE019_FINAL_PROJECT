@@ -38,7 +38,7 @@ if selected == "Home":
     with st.container():
         st.write("---")
         left_column, right_column = st.columns(2)
-        st.write("<div style ='text-align: center; font-size: 20px;'> Vehicle Classification </div>", unsafe_allow_html=True)
+        st.write("<div style ='text-align: center; font-size: 50px;'> Vehicle Classification </div>", unsafe_allow_html=True)
         with left_column:
             st.write(
                 """
