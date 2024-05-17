@@ -3,4 +3,4 @@ streamlit-option-menu
 streamlit-lottie
 numpy
 Pillow
-keras==2.6.0
+opencv-python-headless
