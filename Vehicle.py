@@ -118,8 +118,7 @@ if selected == "About Project":
                 <div style='text-align: justify;'>
                     The dataset for this project came from this link: <a href='https://www.kaggle.com/datasets/kaggleashwin/vehicle-type-recognition' target='_blank'>Kaggle Vehicle Type Recognition</a>. <br>
                     It contains the following: <br>
-                    - TRUCK  <br>
-                    - BUS    <br>                   
+                    - TRUCK  <br>                  
                     - CAR    <br>
                     - MOTORCYCLE  <br>
                 </div>
