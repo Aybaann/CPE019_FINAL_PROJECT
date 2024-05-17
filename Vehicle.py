@@ -2,21 +2,23 @@ import streamlit as st
 import numpy as np
 import json
 from streamlit_option_menu import option_menu
-import requests
 from streamlit_lottie import st_lottie
 from PIL import Image
 import tensorflow as tf
 
-# LOAD MODEL 
-# Tensorflow Model Prediction
-model = tf.keras.models.load_model("vehicle.h5")
+# Function to load and preprocess image for model prediction
+def preprocess_image(image_path, target_size=(64, 64)):
+    image = Image.open(image_path)
+    image = image.resize(target_size)
+    image = np.array(image) / 255.0  # Normalize pixel values to [0, 1]
+    image = np.expand_dims(image, axis=0)  # Add batch dimension
+    return image
 
-def model_prediction(test_image):
-    image = tf.keras.preprocessing.image.load_img(test_image, target_size=(64, 64))
-    input_arr = tf.keras.preprocessing.image.img_to_array(image)
-    input_arr = np.array([input_arr])  # convert single image to batch
-    predictions = model.predict(input_arr)
-    return np.argmax(predictions)  # return index of max element
+# Function for model prediction
+def model_prediction(image):
+    model = tf.keras.models.load_model("vehicle.h5")
+    predictions = model.predict(image)
+    return np.argmax(predictions)
 
 st.set_page_config(page_title="Vehicle Classification", page_icon=":bus:", layout="wide")
 
@@ -117,29 +119,16 @@ if selected == "About Project":
 
 # Vehicle Classification
 if selected == "Vehicle Classification":
-    uploaded_image = st.file_uploader("Upload an image of vehicle", type=["jpg", "jpeg", "png"])
-
+    st.header("Vehicle Classification")
+    uploaded_image = st.file_uploader("Upload an image of a vehicle", type=["jpg", "jpeg", "png"])
+    
     if uploaded_image is not None:
-        st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
-
-        try:
-            image = Image.open(uploaded_image)
-            image = image.resize((224, 224))
-            image = np.expand_dims(image, axis=0)
-            image = np.array(image)
-
-            pred_probabilities = model.predict(image)
-            pred_class_index = np.argmax(pred_probabilities, axis=1)[0]
-
-            vehicle_names = {0: "TRUCK", 1: "BUS", 2: "CAR", 3: "MOTORCYCLE"}  # Define class names
-
-            if pred_class_index in vehicle_names:
-                predicted_vehicle = vehicle_names[pred_class_index]
-                st.success(f"Prediction: {predicted_vehicle}")
-            else:
-                st.warning("Unknown Vehicle")
-        except Exception as e:
-            st.warning("Error: The image was not recognized as a vehicle.")
+        image = preprocess_image(uploaded_image)
+        
+        if st.button("Predict"):
+            result_index = model_prediction(image)
+            labels = ["TRUCK", "BUS", "CAR", "MOTORCYCLE"]
+            st.success(f"Predicted Vehicle Type: {labels[result_index]}")
 
 # Team Page
 if selected == "Team":
