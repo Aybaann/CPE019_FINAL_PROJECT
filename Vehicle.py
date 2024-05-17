@@ -16,9 +16,15 @@ def preprocess_image(image_path, target_size=(64, 64)):
 
 # Function for model prediction
 def model_prediction(image):
-    model = tf.keras.models.load_model("vehicle.h5")
-    predictions = model.predict(image)
-    return np.argmax(predictions)
+    try:
+        model = tf.keras.models.load_model("vehicle.h5")
+        # Print input shape for debugging
+        print("Input shape:", image.shape)
+        predictions = model.predict(image)
+        return np.argmax(predictions)
+    except Exception as e:
+        print("Error:", e)
+        return None
 
 st.set_page_config(page_title="Vehicle Classification", page_icon=":bus:", layout="wide")
 
