@@ -11,7 +11,7 @@ from keras.models import load_model
 model = load_model('vehicle.h5')
 
 #Background Images path 
-#bg_image_home = "./assets/jpeg.jpg"
+bg_image_home = "./assets/jpeg.jpg"
 #bg_image_project = get("./assets/")
 #bg_image_vehicle = get("./assets/")
 
@@ -47,7 +47,7 @@ if selected == "Home":
         f"""
         <style>
         .stApp {{
-            background-image: "./assets/jpeg.jpg";
+            background-image: url({bg_image_home});
             background-size: cover;
         }}
         </style>
