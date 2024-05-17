@@ -53,7 +53,7 @@ if selected == "Home":
     </style>
     """,
     unsafe_allow_html=True
-)
+    )
     st.write("<div style ='text-align: center; font-size: 50px;'> Welcome to Vehicle Classification  </div>", unsafe_allow_html=True)
     with st.container():
         st.write("---")
