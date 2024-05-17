@@ -10,9 +10,9 @@ from streamlit_lottie import st_lottie
 #model = load_model('')
 
 #Background Images path 
-bg_image_home = get("./assets/jpeg.jpg")
-bg_image_project = get("./assets/")
-bg_image_vehicle = get("./assets/")
+bg_image_home = "./assets/jpeg.jpg"
+#bg_image_project = get("./assets/")
+#bg_image_vehicle = get("./assets/")
 
 st.set_page_config(page_title="Vehicle Classification", page_icon=":bus:", layout="wide")
 
