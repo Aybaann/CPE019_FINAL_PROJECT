@@ -18,8 +18,7 @@ def preprocess_image(image_path, target_size=(64, 64)):
 def model_prediction(image):
     try:
         model = tf.keras.models.load_model("vehicle.h5")
-        # Print input shape for debugging
-        print("Input shape:", image.shape)
+        model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])  #
         predictions = model.predict(image)
         result_index = np.argmax(predictions)
         return result_index
