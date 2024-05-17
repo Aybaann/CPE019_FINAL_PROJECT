@@ -142,7 +142,7 @@ if selected == "Vehicle Classification":
              st.write("Predicting...")
              labels = load_labels("labels.txt")
              predicted_sport = predict(test_image, model, labels)
-             st.success(f"Predicted Sports Category: {predicted_sport}")
+             st.success(f"Predicted Vehicle Category: {predicted_sport}")
 
 # Team Page
 if selected == "Team":
