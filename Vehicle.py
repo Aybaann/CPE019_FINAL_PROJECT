@@ -45,7 +45,6 @@ car_path = get("./assets/car.json")
 team_path = get("./assets/team.json")
 ano_path = get("./assets/Ano.json")
 to_path = get("./assets/to.json")
-bus_path = get("./assets/bus.json")
 motor_path = get("./assets/motor.json")
 truck_path = get("./assets/truckkun.json")
 
@@ -81,8 +80,7 @@ if selected == "Home":
         st.write("---")
         left_column, right_column = st.columns(2)
         with left_column:
-             st_lottie(car_path, height = 300, key = "hi")
-             st_lottie(bus_path, height = 300, key = "hii")
+            st_lottie(car_path, height = 300, key = "hi")
         with right_column:
             st_lottie(truck_path, height = 300, key = "hiii")
             st_lottie(motor_path, height = 300, key = "hiiii")
@@ -162,5 +160,4 @@ if selected == "Team":
             """,
                 unsafe_allow_html=True
         )
-        with right_column:
-            st_lottie(team_path, height = 150, key = "hii")
+            st_lottie(team_path, height = 500, key = "hii")
