@@ -24,6 +24,7 @@ bus_path = get("./assets/bus.json")
 motor_path = get("./assets/motor.json")
 truck_path = get("./assets/truckkun.json")
 
+bg_image_path = "./assets/jpeg.jpg"
 
 # Sidebar
 with st.sidebar:
@@ -34,7 +35,19 @@ with st.sidebar:
         menu_icon ="cast",
         default_index = 0,
     )
-       
+
+#Background Images
+st.markdown(
+    f"""
+    <style>
+    .reportview-container {{
+        background-image: url('{bg_image_path}');
+        background-size: cover;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Home Page
 if selected == "Home":
