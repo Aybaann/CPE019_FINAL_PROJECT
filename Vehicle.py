@@ -85,18 +85,19 @@ if selected == "About Project":
             st.write(
                 """
                 <div style='text-align: justify;'>
-                    The dataset for this project came from this link: https://www.kaggle.com/datasets/kaggleashwin/vehicle-type-recognition. <br>
+                    The dataset for this project came from this link: <a href='https://www.kaggle.com/datasets/kaggleashwin/vehicle-type-recognition' target='_blank'>Kaggle Vehicle Type Recognition</a>. <br>
                     It contains the following: <br>
-                         - TRUCK  <br>
-                         - BUS    <br>
-                         - CAR    <br>
-                         - MOTORCYCLE  <br>
+                    - TRUCK  <br>
+                    - BUS    <br>
+                    - CAR    <br>
+                    - MOTORCYCLE  <br>
                 </div>
                 """,
                 unsafe_allow_html=True
             )
         with left_column:
-            st_lottie(to_path, height = 250, key = "hi")
+            if to_path:
+                st_lottie(to_path, height=250, key="hi")
 
 
 # Vehicle Classification
