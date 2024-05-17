@@ -77,7 +77,7 @@ if selected == "About Project":
         with right_column:
             st_lottie(ano_path, height = 250, key = "hi")
 
-      with st.container():
+    with st.container():
         st.write("---")
         left_column, right_column = st.columns(2)
         with right_column:
