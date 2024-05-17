@@ -4,13 +4,21 @@ import json
 from streamlit_option_menu import option_menu
 import requests
 from streamlit_lottie import st_lottie
+from keras.models import load_model
+
+#LOAD MODEL 
+model = load_model('')
+
+#Background Images path 
+bg_image_home = get("./assets/jpeg.jpg")
+bg_image_project = get("./assets/")
+bg_image_vehicle = get("./assets/")
 
 st.set_page_config(page_title="Vehicle Classification", page_icon=":bus:", layout="wide")
 
 def get(path:str):
     with open(path,"r") as p:
         return json.load(p)
-
 
 robot_path = get("./assets/chuchu.json")
 team_path = get("./assets/team.json")
@@ -19,8 +27,6 @@ to_path = get("./assets/to.json")
 bus_path = get("./assets/bus.json")
 motor_path = get("./assets/motor.json")
 truck_path = get("./assets/truckkun.json")
-
-
 
 
 # Sidebar
@@ -36,6 +42,19 @@ with st.sidebar:
 
 # Home Page
 if selected == "Home":
+    st.bg(f"""
+        <style> 
+            st.App{{
+                background: url({bg_image_home});
+                background-size: cover;
+            }}
+            </style>
+        """.
+         unsafe_allow_html=True
+    )
+
+
+    
     st.write("<div style ='text-align: center; font-size: 50px;'> Welcome to Vehicle Classification  </div>", unsafe_allow_html=True)
     with st.container():
         st.write("---")
