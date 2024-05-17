@@ -77,6 +77,28 @@ if selected == "About Project":
         with right_column:
             st_lottie(ano_path, height = 250, key = "hi")
 
+      with st.container():
+        st.write("---")
+        left_column, right_column = st.columns(2)
+        with right_column:
+            st.header("DATASET")
+            st.write(
+                """
+                <div style='text-align: justify;'>
+                    The dataset for this project came from this link: https://www.kaggle.com/datasets/kaggleashwin/vehicle-type-recognition.
+                    <br>
+                    It contains the following: <br>
+                         - TRUCK  <br>
+                         - BUS    <br>
+                         - CAR    <br>
+                         - MOTORCYCLE  <br>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        with left_column:
+            st_lottie(to_path, height = 250, key = "hi")
+
 
 # Vehicle Classification
 if selected == "Vehicle Classification":
