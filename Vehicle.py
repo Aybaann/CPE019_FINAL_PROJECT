@@ -42,7 +42,8 @@ with st.sidebar:
 
 # Home Page
 if selected == "Home":
-    st.bg(f"""
+    st.bg(
+        f"""
         <style> 
             st.App{{
                 background: url({bg_image_home});
