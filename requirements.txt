@@ -1,4 +1,5 @@
 streamlit
 streamlit-option-menu
+streamlit-lottie
 numpy
 Pillow
