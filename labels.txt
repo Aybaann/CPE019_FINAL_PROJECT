@@ -1,4 +1,4 @@
+Bus 
+Car 
 Truck
-Bus
 Motorcycle
-Car
