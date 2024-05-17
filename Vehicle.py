@@ -21,7 +21,8 @@ def model_prediction(image):
         # Print input shape for debugging
         print("Input shape:", image.shape)
         predictions = model.predict(image)
-        return np.argmax(predictions)
+        result_index = np.argmax(predictions)
+        return result_index
     except Exception as e:
         print("Error:", e)
         return None
