@@ -11,7 +11,7 @@ from keras.models import load_model
 model = load_model('vehicle.h5')
 
 #Background Images path 
-bg_image_home = "./assets/jpeg.jpg"
+#bg_image_home = "./assets/jpeg.jpg"
 #bg_image_project = get("./assets/")
 #bg_image_vehicle = get("./assets/")
 
@@ -21,7 +21,7 @@ def get(path:str):
     with open(path,"r") as p:
         return json.load(p)
 
-robot_path = get("./assets/chuchu.json")
+car_path = get("./assets/car.json")
 team_path = get("./assets/team.json")
 ano_path = get("./assets/Ano.json")
 to_path = get("./assets/to.json")
@@ -59,11 +59,11 @@ if selected == "Home":
         st.write("---")
         left_column, right_column = st.columns(2)
         with left_column:
-             st_lottie(robot_path, height = 250, key = "hi")
-             st_lottie(bus_path, height = 250, key = "hii")
+             st_lottie(car_path, height = 300, key = "hi")
+             st_lottie(bus_path, height = 300, key = "hii")
         with right_column:
-            st_lottie(truck_path, height = 250, key = "hiii")
-            st_lottie(motor_path, height = 250, key = "hiiii")
+            st_lottie(truck_path, height = 300, key = "hiii")
+            st_lottie(motor_path, height = 300, key = "hiiii")
 
 # ABOUT PROJECT
 if selected == "About Project":
