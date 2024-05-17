@@ -54,9 +54,26 @@ if selected == "Home":
 # ABOUT PROJECT
 if selected == "About Project":
     st.header("About Project")
-    st.text("The project is about the ")
 
-   
+    with st.container():
+        st.write("---")
+        left_column, right_column = st.columns(2)
+        with left_column:
+            st.write(
+                """
+                <div style='text-align: justify;'>
+                    Vehicle classification is crucial for intelligent transportation systems, focusing on identifying and categorizing buses, trucks, cars, and motorcycles. 
+                    Buses facilitate public transit, trucks handle large-scale freight, cars provide personal travel flexibility, and motorcycles offer efficient short-distance travel.
+                    Accurate classification enhances traffic management, law enforcement, and road safety. Understanding the specific roles and characteristics of each vehicle type enables
+                    more effective traffic control, regulatory compliance, and targeted safety measures. This leads to a more efficient and safer transportation network, benefiting both authorities
+                    and road users. 
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        with right_column:
+            st_lottie(robot_path, height = 250, key = "hi")
+
 
 # Vehicle Classification
 if selected == "Vehicle Classification":
