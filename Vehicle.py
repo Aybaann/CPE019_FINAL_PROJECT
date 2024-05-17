@@ -44,16 +44,16 @@ with st.sidebar:
 # Home Page
 if selected == "Home":
     st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url({bg_image_home});
-            background-size: cover;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    f"""
+    <style>
+    .reportview-container {{
+        background-image: url({bg_image_home});
+        background-size: cover;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
     st.write("<div style ='text-align: center; font-size: 50px;'> Welcome to Vehicle Classification  </div>", unsafe_allow_html=True)
     with st.container():
         st.write("---")
