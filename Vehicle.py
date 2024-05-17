@@ -10,11 +10,6 @@ from keras.models import load_model
 #LOAD MODEL 
 model = load_model('vehicle.h5')
 
-#Background Images path 
-bg_image_home = "./assets/jpeg.jpg"
-#bg_image_project = get("./assets/")
-#bg_image_vehicle = get("./assets/")
-
 st.set_page_config(page_title="Vehicle Classification", page_icon=":bus:", layout="wide")
 
 def get(path:str):
@@ -43,17 +38,6 @@ with st.sidebar:
 
 # Home Page
 if selected == "Home":
-    st.markdown(
-    f"""
-    <style>
-    .reportview-container {{
-        background-image: url({bg_image_home});
-        background-size: cover;
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
     st.write("<div style ='text-align: center; font-size: 50px;'> Welcome to Vehicle Classification  </div>", unsafe_allow_html=True)
     with st.container():
         st.write("---")
