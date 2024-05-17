@@ -96,7 +96,7 @@ if selected == "About Project":
                 unsafe_allow_html=True
            )
         with left_column:
-                st_lottie(to_path, height=250, key="hi")
+                st_lottie(to_path, height=250, key="h1")
 
 
 # Vehicle Classification
